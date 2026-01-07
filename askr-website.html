@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASK-R Technologies | Media Analytics & Consumer Technology Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0052cc;
+            --secondary: #00d4ff;
+            --dark: #0a0e27;
+            --gray: #1a1f3a;
+            --light-gray: #8892b0;
+            --white: #ffffff;
+            --accent: #64ffda;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: float 20s infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            animation: float 15s infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .service-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            color: var(--light-gray);
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .team-member h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .team-member .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-member p {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .linkedin-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .linkedin-link:hover {
+            color: var(--accent);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .project-card h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact */
+        .contact-info {
+            max-width: 600px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: var(--gray);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        footer p {
+            color: var(--light-gray);
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .services-grid,
+            .team-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">ASK-R</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ASK-R Technologies</h1>
+            <p class="subtitle">Analytics, Systems & Knowledge for Real-World Technology</p>
+            <p>We bridge media analytics and consumer technology, helping creators, brands, and organizations optimize digital performance and implement modern technology solutions.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Media & Analytics</h3>
+                <ul>
+                    <li>Media performance analytics & reporting</li>
+                    <li>Audience insights & dashboard setup</li>
+                    <li>Social media & web analytics implementation</li>
+                    <li>AI-assisted content optimization</li>
+                    <li>Data visualization & reporting</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Consumer Technology</h3>
+                <ul>
+                    <li>Smart home & device consulting</li>
+                    <li>Consumer tech setup & optimization</li>
+                    <li>Technology troubleshooting & configuration</li>
+                    <li>IoT device integration</li>
+                    <li>Tech ecosystem planning</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Digital Systems</h3>
+                <ul>
+                    <li>Website analytics & optimization</li>
+                    <li>Digital infrastructure consulting</li>
+                    <li>UX & performance insights</li>
+                    <li>System integration planning</li>
+                    <li>Technology stack recommendations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About ASK-R Technologies</h2>
+        <p style="text-align: center; color: var(--light-gray); max-width: 800px; margin: 0 auto 3rem;">ASK-R Technologies was founded to bridge the gap between media analytics and consumer technology. We combine technical expertise with data-driven insights to help organizations navigate the modern technology landscape.</p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <h3>Seth Miller</h3>
+                <p class="role">Founder & Lead Consultant</p>
+                <p>Seth specializes in technology consulting, consumer tech systems, and digital infrastructure. With a focus on emerging technologies and practical implementation, he helps clients integrate modern solutions that drive real results.</p>
+                <a href="https://www.linkedin.com/in/seth-miller-a230ba2b6/" target="_blank" class="linkedin-link">Connect on LinkedIn →</a>
+            </div>
+            <div class="team-member">
+                <h3>Scott Miller</h3>
+                <p class="role">Co-Founder & Analytics Lead</p>
+                <p>Scott brings extensive experience in business analytics and data-driven decision making. He specializes in media performance analytics, audience insights, and translating complex data into actionable strategies for organizations.</p>
+                <a href="https://www.linkedin.com/in/scottmiller50/" target="_blank" class="linkedin-link">Connect on LinkedIn →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work">
+        <h2>Our Work</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Media Analytics Dashboard</h3>
+                <p>Developed comprehensive analytics dashboard for content creators, tracking engagement metrics across multiple platforms and providing actionable insights for content optimization.</p>
+                <span class="tag">Analytics</span>
+                <span class="tag">Data Visualization</span>
+                <span class="tag">AI</span>
+            </div>
+            <div class="project-card">
+                <h3>Smart Home Integration</h3>
+                <p>Designed and implemented integrated smart home systems for residential clients, focusing on seamless device communication and user-friendly control interfaces.</p>
+                <span class="tag">IoT</span>
+                <span class="tag">Consumer Tech</span>
+                <span class="tag">Integration</span>
+            </div>
+            <div class="project-card">
+                <h3>Digital Performance Optimization</h3>
+                <p>Conducted comprehensive website and digital presence audits, implementing optimization strategies that improved performance metrics and user engagement.</p>
+                <span class="tag">Web Analytics</span>
+                <span class="tag">Optimization</span>
+                <span class="tag">UX</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p><a href="mailto:smiller@ask-rtechnologies.com">smiller@ask-rtechnologies.com</a></p>
+                <p><a href="mailto:scott@ask-rtechnologies.com">scott@ask-rtechnologies.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>Location</h3>
+                <p>Columbus, Ohio</p>
+            </div>
+            <div class="contact-item">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/seth-miller-a230ba2b6/" target="_blank">Seth's LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/scottmiller50/" target="_blank">Scott's LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ASK-R Technologies. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Analytics, Systems & Knowledge for Real-World Technology</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Mobile menu toggle (basic implementation)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
