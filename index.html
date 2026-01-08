@@ -501,12 +501,12 @@
         /* Contact Section */
         .contact-container {
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
         }
-
         .contact-info-side h3 {
             color: var(--accent);
             margin-bottom: 2rem;
@@ -607,7 +607,9 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
         }
-
+        #contact {
+            max-width: 100%;
+        }
         /* CTA Banner */
         .cta-banner {
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
